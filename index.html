@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuyana Puklla</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Game -->
+    <main>
+        <h1 class="game-title">Yuyana Puklla</h1>
+        <p class="game-description">*Find all matching pairs within 90 seconds!</p>
+        <div class="game-container">
+            <div class="board-header">
+                <div class="game-info">
+                    <div class="info-items">
+                        <span>⏱️Timer:</span>
+                        <span id="timer">90</span>s
+                    </div>
+                    <div class="info-items">
+                        <span>🔄Flips:</span>
+                        <span id="flips">0</span>
+                    </div>
+                    <div class="info-items">
+                        <span>❌Misses:</span>
+                        <span id="misses">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-board" id="game-board"></div>
+            <div class="game-record-info">
+                <span>🏆Best Record:</span>
+                <span id="best-record">--s / -- flips</span>
+            </div>
+        </div>
+        <button id="restart-btn">Restart</button>
+    </main>
+
+    <!-- Pop ups -->
+    <div class="popup" id="game-popup">
+        <div class="popup-content">
+            <h2 id="popup-title"></h2>
+            <p id="popup-message"></p>
+            <button id="popup-button"></button>
+        </div>
+    </div>
+    <script src="script/game.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+:root {
+    --card-size: 100px;
+    --card-gap: 10px;
+    --primary: #6200ea;
+    --secondary: white;
+    --success: #11b817;
+    --info: #f5f5f5;
+    --error: #fc2617;
+    --background: #f0f0f0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Old Edge */
+}
+
+body, html {
+    font-family:'Segoe UI', Arial, sans-serif;
+    background-color: var(--background);
+    min-height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.game-title {
+    color: var(--primary);
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.game-description {
+    text-align: center;
+    color: #666;
+    max-width: 450px;
+}
+
+/* Game container */
+.game-container {
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.board-header {
+    margin-bottom: 20px;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--card-gap);
+}
+
+.info-items {
+    background-color: var(--info);
+    padding: 6px;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(5, var(--card-size));
+    gap: var(--card-gap);
+    justify-content: center;
+    perspective: 1000px;
+}
+
+/* Card */
+.card {
+    width: var(--card-size);
+    height: var(--card-size);
+    position: relative;
+    border-radius: 14px;
+    /* transform-style: preserve-3d; */
+    cursor: pointer;
+}
+
+.inside-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.2s;
+}
+
+.inside-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    border: #d8d8d8 0.1px solid;
+    border-radius: 13px;
+}
+
+.card-front {
+    background-color: #ddd;
+}
+
+.card-back {
+    background-color: #a7a8f7;
+    /* color: white; */
+    transform: rotateY(180deg);
+}
+
+.card.wrong .card-back {
+    background-color: var(--error);
+}
+
+.card.flipped .inside-card {
+    transform: rotateY(180deg);
+}
+
+.card.matched .card-back {
+    background-color: var(--success);
+}
+
+.game-record-info {
+    margin-top: 20px;
+    padding: 6px;
+    background-color: var(--info);
+    border-radius: 5px;
+    width: 230px;
+}
+
+#restart-btn {
+    padding: 12px 30px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+#restart-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* Pop up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content h2 {
+    margin-bottom: 15px;
+    color: black;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    white-space: pre-line;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Conditions */
+@media (max-width: 600px) {
+    :root {
+        --card-size: 60px;
+        --card-gap: 5px;
+    }
+
+    .game-container {
+        padding: 10px;
+    }
+
+    .game-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-front,
+    .card-back {
+        font-size: 1.5em;
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .game-description {
+        font-size: 0.9em;
+        padding: 0 15px;
+    }
+}
